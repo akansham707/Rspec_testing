@@ -48,3 +48,7 @@ group :development do
   # gem "spring"
 end
 
+
+gem "passwordless", "~> 1.7"
+
+gem "letter_opener", "~> 1.10", :group => :development

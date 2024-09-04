@@ -8,8 +8,8 @@ describe "Books API" , type: :request do
   describe " Get /books" do 
    
     it 'return all books' do
-      FactoryBot.create(:book, title: "as" , author: "qwe")
-      FactoryBot.create(:book, title: "name", author: "qq")
+      FactoryBot.create(:book, title: "as" )
+      FactoryBot.create(:book, title: "name")
       get '/books'
 
       expect(response).to have_http_status(:success)
@@ -20,7 +20,7 @@ describe "Books API" , type: :request do
   describe "Post /books" do 
     it 'create the book' do
       expect {
-      post "/books" , params: {book: {title: "ABC", author: "qwe"}}
+      post "/books" , params: {book: {title: "ABC"}}
       }.to change {Book.count}.from(0).to(1)
 
       expect(response). to have_http_status(:created)
@@ -28,7 +28,7 @@ describe "Books API" , type: :request do
   end
 
   describe "Delete /books/:id" do
-    let!(:book) {FactoryBot.create(:book, title: "as" , author: "qwe")}
+    let!(:book) {FactoryBot.create(:book, title: "as" )}
 
     it 'delete the book' do
       expect{
@@ -42,7 +42,7 @@ describe "Books API" , type: :request do
 
   describe "check" do 
     before(:each) do 
-     @book= FactoryBot.create(:book, title:"as" , author:"asd")
+     @book= FactoryBot.create(:book, title:"as")
     end
 
     after(:each) do 
