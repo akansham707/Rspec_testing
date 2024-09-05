@@ -31,6 +31,38 @@ describe "Books API" , type: :request do
         ]
       )
     end
+
+    it "add pagination but only limit " do
+      get '/books' , params: {limit: 1}
+      expect(response).to have_http_status(:success)
+      expect((response_request).size).to eq(1)
+      expect(response_request).to eq(
+        [
+          {
+            "id" => @book1.id,
+            "title" => "as",
+            "author_name"=> "akansha mittal" ,
+            "age"=> 10
+          }
+        ]
+      )
+    end
+
+    it "add pagination but only limit and offset " do
+      get '/books' , params: {limit: 1, offset:1}
+      expect(response).to have_http_status(:success)
+      expect((response_request).size).to eq(1)
+      expect(response_request).to eq(
+        [
+          {
+            "id" => @book2.id,
+            "title" => "name",
+            "author_name"=> "akansha mittal" ,
+            "age"=> 10
+          }
+        ]
+      )
+    end
   end
 
   describe "Get /books/:id" do 
