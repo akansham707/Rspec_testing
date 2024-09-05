@@ -5,7 +5,8 @@ class BooksController < ApplicationController
     end
 
     def create
-        book = Book.new(book_params)
+        author = Author.create!(author_params)
+        book = Book.new(book_params.merge(author_id: author.id))
         if book.save
             render json: {message: "Book Successfully Created", book: book}, status: 201
         else
@@ -13,14 +14,23 @@ class BooksController < ApplicationController
         end    
     end
 
-
     def destroy
         Book.find(params[:id]).destroy!
         head :no_content
     end
 
+    def show
+        @book = Book.find(params[:id])
+        render json: @book , status: :ok
+    end
+
     private
-      def book_params
-        params.require(:book).permit(:title, :author)
-      end
+
+    def author_params
+        params.require(:author).permit(:first_name, :last_name,:age)
+    end
+
+    def book_params
+    params.require(:book).permit(:title, :author)
+    end
 end

@@ -11,3 +11,6 @@ class UserMailer < ApplicationMailer
     mail to: "akansham707@gmail.com"
   end
 end
+
+
+# rails g mailer user welcome
