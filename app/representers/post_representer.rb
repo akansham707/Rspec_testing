@@ -4,6 +4,11 @@ class PostRepresenter < ApplicationRepresenter
     end
 
 
+    def name
+      "Helollle"
+    end
+
+
     def as_json
         # if @posts.respond_to?(:each)
         # # if @posts.is_a?(Array)
